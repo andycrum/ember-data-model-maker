@@ -1,6 +1,0 @@
-{{input type='text' value=name}}
-{{view Ember.Select content=typeOptions value=type}}
-{{#if hasRelation}}
-{{input type='text' value=relatedTo placeholder='Model name'}}
-{{/if}}
-<a {{action 'removeField'}} class="remove-field" href='#'>&times;</a>
