@@ -2,7 +2,7 @@
   <h2>Models</h2>
   <ul>
   {{#each item in model}}
-    <li class="model-list-item"><h4>{{item.name}}</h4>
+    <li class="model-list-item"><h4>{{item.name}} <a {{action 'removeModel' item}} class="remove-link" href='#'>&times;</a></h4>
     <ul>
     {{#each item.fields itemController='field'}}
       <li>

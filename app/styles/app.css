@@ -45,9 +45,13 @@ input[type=text], select, button {
   margin-bottom: 20px;
 }
 
-.remove-field {
+.remove-link {
   text-decoration: none;
   font-size: 12px;
   font-weight: 300;
   color: #c00;
+}
+
+h4 .remove-link {
+  margin-left: 5px;
 }

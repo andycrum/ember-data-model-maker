@@ -8,6 +8,8 @@ export default function getModelInfo(controller) {
       modelObjects = [],
       newModelObjects = [];
 
+  controller.set('modelObjects', []);
+
   models.forEach(function(model, index) {
     fields[index] = [];
 

@@ -38,6 +38,24 @@ export default Ember.ArrayController.extend({
       });
 
       currentFields.addObject(newField);
+    },
+    // Remove a model
+    removeModel: function(model) {
+      var fields = model.get('fields'),
+          _this = this;
+
+      // iterate through fields and delete those records
+      fields.forEach(function(field) {
+        field.deleteRecord();
+      });
+
+      model.deleteRecord();
+
+      // trigger an update of the json,etc.
+      // this does a mock ajax call or something, so it needs a timeout to work correctly
+      setTimeout(function() {
+        getModelInfo(_this);
+      }, 100);
     }
   }
 });
