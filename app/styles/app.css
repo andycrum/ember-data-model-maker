@@ -21,6 +21,10 @@ section {
   width: 50%
 }
 
+input[type=text], select, button {
+  font-size: 16px;
+}
+
 .code-div {
   margin: 10px 0;
   padding: 10px;
