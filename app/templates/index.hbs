@@ -49,7 +49,7 @@
   <ul class='code-div'>
    {{#each jsonObjects}}
      <li>
-     "{{pluralize-word this.name}}": [{
+     "{{format-model-name this.name}}": {
        <ul>
        <li>"id": 1,</li>
        {{#each fields}}
