@@ -16,10 +16,20 @@ export default function getModelInfo(controller) {
     model.get('fields').then(function(currentFields) {
       currentFields.forEach(function(field, i) {
         var fieldName = field.get('name');
+        var fieldType = field.get('type');
+
         fieldName = (fieldName === '')? '<field name>' : fieldName;
+
         switch(adapter) {
           case 'DS.ActiveModelAdapter':
-            fieldName = Ember.String.decamelize(fieldName);
+            if(fieldType === 'hasMany') {
+              fieldName = Ember.Inflector.inflector.singularize(fieldName);
+              fieldName = Ember.String.decamelize(fieldName) + '_ids';
+            } else if(fieldType === 'belongsTo') {
+              fieldName = Ember.String.decamelize(fieldName) + '_id';
+            } else {
+              fieldName = Ember.String.decamelize(fieldName);
+            }
             break;
           case 'DS.RESTAdapter':
             fieldName = Ember.String.camelize(fieldName);

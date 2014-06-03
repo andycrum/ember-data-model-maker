@@ -33,8 +33,10 @@
     <li>App.{{name}} = DS.Model.extend({<br>
       <ul>
       {{#each fields}}
-        <li>{{camelize-word name}}:
-        {{#if relatedTo}}DS.{{type}}('{{camelize-word relatedTo}}'){{else}}DS.attr('{{type}}'){{/if}}{{#unless lastField}},{{/unless}}</li>
+      <li>
+        {{#if relatedTo}}{{pluralize-word relatedTo type}}{{else}}{{camelize-word name}}{{/if}}:
+        {{#if relatedTo}}DS.{{type}}('{{camelize-word relatedTo}}'){{else}}DS.attr('{{type}}'){{/if}}{{#unless lastField}},{{/unless}}
+      </li>
       {{/each}}
       </ul>
     });</li>
@@ -61,4 +63,4 @@
    {{/each}}
   </ul>
   {{/if}}
-<section>
+</section>
