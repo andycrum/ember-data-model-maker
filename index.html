@@ -7,17 +7,20 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <base href="/ember-data-model-maker/" />
+    <base href="/" />
 
+    <link rel="stylesheet" href="assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css">
     <link rel="stylesheet" href="assets/ember-data-model-maker-06f4af4360eaa3816f228487207ee021.css">
   </head>
   <body>
     <script>
-      window.ENV = {"baseURL":"/ember-data-model-maker/","locationType":"auto","FEATURES":{},"APP":{}};
+      window.EmberDataModelMakerENV = {"baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{}};
+      window.EmberENV = window.EmberDataModelMakerENV.EmberENV;
     </script>
-    <script src="assets/ember-data-model-maker-2491a74dc4dd1693ddce19644a6216aa.js"></script>
+    <script src="assets/vendor-5429f75166356b28c3e42dd401abaf36.js"></script>
+    <script src="assets/ember-data-model-maker-87ec184d5e53585009d714ea6db4806c.js"></script>
     <script>
-      window.EmberDataModelMaker = require('ember-data-model-maker/app')['default'].create(ENV.APP);
+      window.EmberDataModelMaker = require('ember-data-model-maker/app')['default'].create(EmberDataModelMakerENV.APP);
     </script>
     <a href="https://github.com/andycrum/ember-data-model-maker/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
   </body>
