@@ -9,15 +9,18 @@
 
     {{BASE_TAG}}
 
+    <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/ember-data-model-maker.css">
   </head>
   <body>
     <script>
-      window.ENV = {{ENV}};
+      window.EmberDataModelMakerENV = {{ENV}};
+      window.EmberENV = window.EmberDataModelMakerENV.EmberENV;
     </script>
+    <script src="assets/vendor.js"></script>
     <script src="assets/ember-data-model-maker.js"></script>
     <script>
-      window.EmberDataModelMaker = require('ember-data-model-maker/app')['default'].create(ENV.APP);
+      window.EmberDataModelMaker = require('ember-data-model-maker/app')['default'].create(EmberDataModelMakerENV.APP);
     </script>
   </body>
 </html>

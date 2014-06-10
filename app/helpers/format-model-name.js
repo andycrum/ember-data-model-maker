@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 // Pluralizes and formats model name depending on adapter
 export default Ember.Handlebars.makeBoundHelper(function(word, options) {
   var pluralized = Ember.String.pluralize(word),

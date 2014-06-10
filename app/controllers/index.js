@@ -1,5 +1,6 @@
 import Constants from 'ember-data-model-maker/utils/constants';
 import getModelInfo from 'ember-data-model-maker/utils/get-model-info';
+import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
   adapter: Constants.ADAPTER_OPTIONS[0],

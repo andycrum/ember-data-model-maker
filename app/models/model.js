@@ -1,3 +1,5 @@
+import DS from 'ember-data';
+
 var Model = DS.Model.extend({
   name: DS.attr('string'),
   fields: DS.hasMany('field', {async: true})

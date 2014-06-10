@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 // Pluralizes
 export default Ember.Handlebars.makeBoundHelper(function(word, type) {
   if(type === 'hasMany') {

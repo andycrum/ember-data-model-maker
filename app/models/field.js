@@ -1,3 +1,5 @@
+import DS from 'ember-data';
+
 var Field = DS.Model.extend({
   parentModel: DS.belongsTo('model'),
   name: DS.attr('string'),

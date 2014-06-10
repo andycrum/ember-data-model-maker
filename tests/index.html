@@ -34,10 +34,12 @@
     <div id="qunit-fixture"></div>
 
     <script>
-      window.ENV = {{ENV}};
+      window.EmberDataModelMakerENV = {{ENV}};
+      window.EmberENV = window.EmberDataModelMakerENV.EmberENV;
     </script>
     <script src="assets/qunit.js"></script>
     <script src="assets/qunit-notifications.js"></script>
+    <script src="assets/vendor.js"></script>
     <script src="assets/ember-data-model-maker.js"></script>
     <script src="testem.js"></script>
     <script>

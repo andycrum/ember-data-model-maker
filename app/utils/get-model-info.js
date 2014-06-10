@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 // Converts models/fields to objects that can be represented as JSON
 export default function getModelInfo(controller) {
   var models = controller.store.all('model'),

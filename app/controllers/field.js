@@ -1,5 +1,6 @@
 import Constants from 'ember-data-model-maker/utils/constants';
 import getModelInfo from 'ember-data-model-maker/utils/get-model-info';
+import Ember from 'ember';
 
 // Controller used as itemController for each model field
 export default Ember.ObjectController.extend({

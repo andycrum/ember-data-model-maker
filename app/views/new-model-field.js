@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 // Custom text field for 'new model' name
 export default Ember.TextField.extend({
   didInsertElement: function() {
