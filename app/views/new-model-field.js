@@ -23,10 +23,11 @@ export default Ember.TextField.extend({
     var controller = this.get('parentView').get('controller'),
         store = controller.get('store');
 
-    store.createRecord('model', {
+    var model = store.createRecord('model', {
       name: Ember.String.classify(this.$().val())
     });
 
     controller.set('creatingNewModel', false);
+    controller.send('newField', model);
   }
 });
