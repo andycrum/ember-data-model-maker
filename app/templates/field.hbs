@@ -1,14 +1,14 @@
 <div class='col-sm-4'>
-  {{input type='text' value=name placeholder='Attribute name' class='form-control'}}
+  {{input type='text' value=name placeholder='Attribute Name' class='form-control'}}
 </div>
 
 <div class='col-sm-3'>
-  {{view Ember.Select content=typeOptions value=type prompt='Attribute type' class='form-control'}}
+  {{view Ember.Select content=typeOptions value=type prompt='Attribute Type' class='form-control'}}
 </div>
 
 {{#if hasRelation}}
   <div class='col-sm-4'>
-    {{input type='text' value=relatedTo placeholder='Model name' class='form-control'}}
+    {{input type='text' value=relatedTo placeholder='Model Name' class='form-control'}}
   </div>
 {{/if}}
 

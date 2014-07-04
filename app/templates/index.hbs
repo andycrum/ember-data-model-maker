@@ -1,20 +1,23 @@
-<div class='row'>
-  <div class='col-sm-6'>
+<div class="row">
+  <div class="col-sm-6">
   <h2>Models</h2>
-  <ul class='list-unstyled'>
+  <ul class="list-unstyled">
     {{#each item in model}}
-      <li class='model-list-item'>
-        <div class='panel panel-primary'>
-          <div class='panel-heading'>
-            {{item.name}}
-            <button type='button' {{action 'removeModel' item}} class='close'><span aria-hidden='true'>&times;</span><span class='sr-only'>Delete</span></button>
+      <li class="model-list-item">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              {{item.name}}
+              <button type="button" {{action "removeModel" item}} class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Delete</span></button>
+            </h3>
+
           </div>
 
-          <div class='panel-body'>
+          <div class="panel-body">
             <ul class="list-unstyled">
-              {{#each item.fields itemController='field'}}
-                <li class='row'>
-                  {{partial 'field'}}
+              {{#each item.fields itemController="field"}}
+                <li class="row">
+                  {{partial "field"}}
                 </li>
               {{else}}
                 <li>
@@ -25,27 +28,27 @@
           </div>
 
           <div class="panel-footer">
-            <button type='button' {{action 'newField' item}} class='btn btn-sm btn-block btn-default'>Add Field</button>
+            <button type="button" {{action "newField" item}} class="btn btn-sm btn-block btn-primary">&plus; Add Field</button>
           </div>
         </div>
       </li>
     {{/each}}
 
     {{#if creatingNewModel}}
-      <li>{{view 'new-model-field' class='form-control' placeholder='New Model Name'}}</li>
+      <li>{{view "new-model-field" class="form-control" placeholder="New Model Name"}}</li>
     {{else}}
-      <li><button {{action 'newModel'}} class='btn btn-primary' type='button'>Add Model</button></li>
+      <li><button {{action "newModel"}} class="btn btn-lg btn-success" type="button">&plus; Add Model</button></li>
     {{/if}}
   </ul>
   </div>
 
-  <div class='col-sm-6'>
+  <div class="col-sm-6">
   <h2>Model Definitions</h2>
 
-  <ul class='code-div well well-sm'>
+  <ul class="code-div well well-sm">
     {{#if modelObjects}}
       {{#each modelObjects}}
-        <li class='form-group'>App.{{name}} = DS.Model.extend({<br>
+        <li class="form-group">App.{{name}} = DS.Model.extend({<br>
           <ul>
             {{#each fields}}
               <li>
@@ -62,17 +65,17 @@
 
   <h2>Expected JSON</h2>
 
-  <form class='form-horizontal' role='form'>
-    <div class='row form-group'>
-      <label for='adapter-select' class='col-sm-3 control-label'>Adapter:</label>
-      <div class='col-sm-9'>
-        {{view Ember.Select id='adapter-select' content=adapterOptions value=adapter class='form-control'}}<br>
+  <form class="form-horizontal" role="form">
+    <div class="row form-group">
+      <label for="adapter-select" class="col-sm-2 control-label">Adapter:</label>
+      <div class="col-sm-9">
+        {{view Ember.Select id="adapter-select" content=adapterOptions value=adapter class="form-control"}}
       </div>
     </div>
   </form>
 
   {{#if jsonObjects}}
-    <ul class='code-div well well-sm form-group'>
+    <ul class="code-div well well-sm form-group">
      {{#each jsonObjects}}
        <li>
        "{{format-model-name this.name}}": [{
