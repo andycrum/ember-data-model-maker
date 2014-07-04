@@ -5,7 +5,6 @@ import Ember from 'ember';
 export default Ember.ArrayController.extend({
   adapter: Constants.ADAPTER_OPTIONS[0],
   adapterOptions: Constants.ADAPTER_OPTIONS,
-  creatingNewField: false,
   creatingNewModel: false,
   jsonObjects: [],
   modelObjects: [],
@@ -31,14 +30,16 @@ export default Ember.ArrayController.extend({
     // Add a new field
     newField: function(model) {
       var currentFields = model.get('fields'),
-          _this = this;
+        _this = this;
 
-      var newField = _this.store.createRecord('field', {
-        name: '',
-        parentModel: model
+      currentFields.then(function (data) {
+        var newField = _this.store.createRecord('field', {
+          name: '',
+          parentModel: model
+        });
+
+        data.addObject(newField);
       });
-
-      currentFields.addObject(newField);
     },
     // Remove a model
     removeModel: function(model) {
@@ -54,7 +55,7 @@ export default Ember.ArrayController.extend({
 
       // trigger an update of the json,etc.
       // this does a mock ajax call or something, so it needs a timeout to work correctly
-      setTimeout(function() {
+      Ember.run.later(function() {
         getModelInfo(_this);
       }, 100);
     }

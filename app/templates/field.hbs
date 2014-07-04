@@ -1,6 +1,17 @@
-{{input type='text' value=name}}
-{{view Ember.Select content=typeOptions value=type}}
+<div class='col-sm-4'>
+  {{input type='text' value=name placeholder='Attribute name' class='form-control'}}
+</div>
+
+<div class='col-sm-3'>
+  {{view Ember.Select content=typeOptions value=type prompt='Attribute type' class='form-control'}}
+</div>
+
 {{#if hasRelation}}
-{{input type='text' value=relatedTo placeholder='Model name'}}
+  <div class='col-sm-4'>
+    {{input type='text' value=relatedTo placeholder='Model name' class='form-control'}}
+  </div>
 {{/if}}
-<a {{action 'removeField'}} class="remove-link" href='#'>&times;</a>
+
+<div {{bind-attr class='hasRelation::col-sm-offset-4 :col-sm-1'}}>
+  <button type='button' {{action 'removeField'}} class='close'><span aria-hidden='true' class='text-danger'>&times;</span><span class='sr-only'>Delete</span></button>
+</div>

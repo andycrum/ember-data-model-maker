@@ -3,6 +3,10 @@ import Ember from 'ember';
 
 // Placeholder values for example JSON representation
 export default Ember.Handlebars.makeBoundHelper(function(field, adapter) {
+  if (!field.type) {
+    return;
+  }
+
   var typeUpper = field.type.toUpperCase(),
       placeholder = '',
       relatedTo = (!field.relatedTo || field.relatedTo === '')? '(relatedModel)' : field.relatedTo,
