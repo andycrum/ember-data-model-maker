@@ -11,11 +11,10 @@
 # misc
 /.sass-cache
 /connect.lock
-/libpeerconnection.log
-.DS_Store
-Thumbs.db
 /coverage/*
+/libpeerconnection.log
 npm-debug.log
 testem.log
-*.sublime-project
-*.sublime-workspace
+
+edmm.sublime-project
+edmm.sublime-workspace
