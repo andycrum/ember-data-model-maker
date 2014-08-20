@@ -5,9 +5,12 @@ import Ember from 'ember';
 export default Ember.ArrayController.extend({
   adapter: Constants.ADAPTER_OPTIONS[0],
   adapterOptions: Constants.ADAPTER_OPTIONS,
+  modelFormat: Constants.MODEL_FORMAT_OPTIONS[0],
+  modelFormatOptions: Constants.MODEL_FORMAT_OPTIONS,
   creatingNewModel: false,
   jsonObjects: [],
   modelObjects: [],
+  isGlobalFormat: Ember.computed.equal('modelFormat', Constants.MODEL_FORMAT_OPTIONS[0]),
 
   // Observers
   modelObserver: function() {
