@@ -52,7 +52,7 @@
           <ul>
             {{#each fields}}
               <li>
-                {{#if relatedTo}}{{pluralize-word relatedTo type}}{{else}}{{camelize-word name}}{{/if}}:
+                {{camelize-word name}}:
                 {{#if relatedTo}}DS.{{type}}('{{camelize-word relatedTo}}'){{else}}DS.attr('{{type}}'){{/if}}{{#unless lastField}},{{/unless}}
               </li>
             {{/each}}
