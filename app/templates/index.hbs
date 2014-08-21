@@ -61,8 +61,8 @@
           {{#if isGlobalFormat}}
             App.{{model.name}} = DS.Model.extend({<br>
           {{else}}
-            // app/models/{{str-dasherize model.name}}.js<br/>
-            export default DS.Model.extend({<br/>
+            <span class="text-muted">// app/models/{{str-dasherize model.name}}.js</span><br>
+            export default DS.Model.extend({<br>
           {{/if}}
           <ul>
             {{#each model.fields}}
