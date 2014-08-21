@@ -26,12 +26,8 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
-  if (environment === 'test') {
-
-  }
-
   if (environment === 'production') {
-
+    ENV.baseURL = '/ember-data-model-maker/'
   }
 
   return ENV;
