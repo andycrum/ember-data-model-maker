@@ -45,12 +45,27 @@
   <div class="col-sm-6">
   <h2>Model Definitions</h2>
 
+  <form class="form-horizontal" role="form">
+    <div class="row form-group">
+      <label for="format-select" class="col-sm-2 control-label">Format:</label>
+      <div class="col-sm-9">
+        {{view Ember.Select id="format-select" content=modelFormatOptions value=modelFormat class="form-control"}}
+      </div>
+    </div>
+  </form>
+
   <ul class="code-div well well-sm">
     {{#if modelObjects}}
-      {{#each modelObjects}}
-        <li class="form-group">App.{{name}} = DS.Model.extend({<br>
+      {{#each model in modelObjects}}
+        <li class="form-group">
+          {{#if isGlobalFormat}}
+            App.{{model.name}} = DS.Model.extend({<br>
+          {{else}}
+            // app/models/{{str-dasherize model.name}}.js<br/>
+            export default DS.Model.extend({<br/>
+          {{/if}}
           <ul>
-            {{#each fields}}
+            {{#each model.fields}}
               <li>
                 {{camelize-word name}}:
                 {{#if relatedTo}}DS.{{type}}('{{camelize-word relatedTo}}'){{else}}DS.attr('{{type}}'){{/if}}{{#unless lastField}},{{/unless}}
