@@ -1,6 +1,11 @@
 html, body {
-  margin: 20px;
+  margin: 0;
+  padding: 0;
   font: 16px Helvetica, Arial, sans-serif;
+}
+
+.app-wrap {
+  margin: 20px;
 }
 
 h4 {
@@ -54,4 +59,12 @@ input[type=text], select, button {
 
 h4 .remove-link {
   margin-left: 5px;
+}
+
+.app-footer {
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #e5e5e5;
+  font-size: 80%;
 }
