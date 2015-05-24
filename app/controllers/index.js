@@ -10,7 +10,7 @@ export default Ember.ArrayController.extend({
   creatingNewModel: false,
   jsonObjects: [],
   modelObjects: [],
-  isGlobalFormat: Ember.computed.equal('modelFormat', Constants.MODEL_FORMAT_OPTIONS[0]),
+  isGlobalFormat: Ember.computed.equal('modelFormat', Constants.MODEL_FORMAT_GLOBAL),
 
   // Observers
   modelObserver: function() {

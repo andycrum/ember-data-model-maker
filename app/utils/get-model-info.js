@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Constants from 'ember-data-model-maker/utils/constants';
 
 // Converts models/fields to objects that can be represented as JSON
 export default function getModelInfo(controller) {
@@ -23,7 +24,7 @@ export default function getModelInfo(controller) {
         fieldName = (fieldName === '')? '<field name>' : fieldName;
 
         switch(adapter) {
-          case 'DS.ActiveModelAdapter':
+          case Constants.ADAPTER_ACTIVEMODEL:
             if(fieldType === 'hasMany') {
               fieldName = Ember.Inflector.inflector.singularize(fieldName);
               fieldName = Ember.String.decamelize(fieldName) + '_ids';
@@ -33,7 +34,7 @@ export default function getModelInfo(controller) {
               fieldName = Ember.String.decamelize(fieldName);
             }
             break;
-          case 'DS.RESTAdapter':
+          case Constants.ADAPTER_REST:
             fieldName = Ember.String.camelize(fieldName);
             break;
         }

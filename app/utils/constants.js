@@ -1,10 +1,17 @@
 // Define some constants
-export default {
-  ADAPTER_OPTIONS: ['DS.RESTAdapter', 'DS.ActiveModelAdapter'],
-  MODEL_FORMAT_OPTIONS: ['Global App', 'ES6 Module'],
+var constants = {
+  ADAPTER_REST: 'DS.RESTAdapter',
+  ADAPTER_ACTIVEMODEL: 'DS.ActiveModelAdapter',
+  MODEL_FORMAT_ES6: 'ES6 Module',
+  MODEL_FORMAT_GLOBAL: 'Global App',
   TYPE_OPTIONS: ['string', 'number', 'boolean', 'date', 'hasMany', 'belongsTo'],
   PLACEHOLDER_STRING: 'foo',
   PLACEHOLDER_NUMBER: 123,
   PLACEHOLDER_BOOLEAN: true,
   PLACEHOLDER_DATE: new Date()
 };
+
+constants.ADAPTER_OPTIONS = [constants.ADAPTER_REST, constants.ADAPTER_ACTIVEMODEL];
+constants.MODEL_FORMAT_OPTIONS = [constants.MODEL_FORMAT_ES6, constants.MODEL_FORMAT_GLOBAL];
+
+export default constants;
