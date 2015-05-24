@@ -19,7 +19,7 @@ export default Ember.ArrayController.extend({
   }.observes('modelObjects'),
 
   changeObserver: function () {
-    this.trigger('updateFields');
+    this.send('updateFields');
   }.observes('adapter'),
 
   // Actions
