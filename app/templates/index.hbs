@@ -15,9 +15,9 @@
 
           <div class="panel-body">
             <ul class="list-unstyled">
-              {{#each item.fields itemController="field"}}
+              {{#each item.fields as |field|}}
                 <li class="row">
-                  {{partial "field"}}
+                  {{model-field field=field update="updateFields"}}
                 </li>
               {{else}}
                 <li>
@@ -42,21 +42,21 @@
   </ul>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-sm-5">
   <h2>Model Definitions</h2>
 
   <form class="form-horizontal" role="form">
     <div class="row form-group">
       <label for="format-select" class="col-sm-2 control-label">Format:</label>
       <div class="col-sm-9">
-        {{view Ember.Select id="format-select" content=modelFormatOptions value=modelFormat class="form-control"}}
+        {{view "select" id="format-select" content=modelFormatOptions value=modelFormat class="form-control"}}
       </div>
     </div>
   </form>
 
   <ul class="code-div well well-sm">
     {{#if modelObjects}}
-      {{#each model in modelObjects}}
+      {{#each modelObjects as |model|}}
         <li class="form-group">
           {{#if isGlobalFormat}}
             App.{{model.name}} = DS.Model.extend({<br>
@@ -65,10 +65,10 @@
             export default DS.Model.extend({<br>
           {{/if}}
           <ul>
-            {{#each model.fields}}
+            {{#each model.fields as |field|}}
               <li>
-                {{camelize-word name}}:
-                {{#if relatedTo}}DS.{{type}}('{{camelize-word relatedTo}}'){{else}}DS.attr('{{type}}'){{/if}}{{#unless lastField}},{{/unless}}
+                {{camelize-word field.name}}:
+                {{#if field.relatedTo}}DS.{{field.type}}('{{camelize-word field.relatedTo}}'){{else}}DS.attr('{{field.type}}'){{/if}}{{#unless field.lastField}},{{/unless}}
               </li>
             {{/each}}
           </ul>
@@ -84,23 +84,23 @@
     <div class="row form-group">
       <label for="adapter-select" class="col-sm-2 control-label">Adapter:</label>
       <div class="col-sm-9">
-        {{view Ember.Select id="adapter-select" content=adapterOptions value=adapter class="form-control"}}
+        {{view "select" id="adapter-select" content=adapterOptions value=adapter class="form-control"}}
       </div>
     </div>
   </form>
 
   {{#if jsonObjects}}
     <ul class="code-div well well-sm form-group">
-     {{#each jsonObjects}}
+     {{#each jsonObjects as |object|}}
        <li>
-       "{{format-model-name this.name}}": [{
+       "{{format-model-name object.name adapter}}": [{
          <ul>
            <li>"id": 1,</li>
-           {{#each fields}}
-             <li>"{{jsonPropertyName}}": {{placeholder-value this}}{{#unless lastField}},{{/unless}}</li>
+           {{#each object.fields as |field|}}
+             <li>"{{field.jsonPropertyName}}": {{placeholder-value field}}{{#unless field.lastField}},{{/unless}}</li>
            {{/each}}
          </ul>
-       }]{{#unless lastModel}},{{/unless}}
+       }]{{#unless object.lastModel}},{{/unless}}
        </li>
      {{/each}}
     </ul>

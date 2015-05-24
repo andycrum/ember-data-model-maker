@@ -1,0 +1,17 @@
+<div class='col-sm-4'>
+  {{input type='text' value=field.name placeholder='Attribute Name' class='form-control'}}
+</div>
+
+<div class='col-sm-3'>
+  {{view "select" content=typeOptions value=field.type prompt='Attribute Type' class='form-control'}}
+</div>
+
+{{#if field.hasRelation}}
+  <div class='col-sm-4'>
+    {{input type='text' value=field.relatedTo placeholder='Model Name' class='form-control'}}
+  </div>
+{{/if}}
+
+<div {{bind-attr class='field.hasRelation::col-sm-offset-4 :col-sm-1'}}>
+  <button type='button' {{action 'removeField' field}} class='close'><span aria-hidden='true' class='text-danger'>&times;</span><span class='sr-only'>Delete</span></button>
+</div>

@@ -1,12 +1,12 @@
 import DS from 'ember-data';
 
 var Field = DS.Model.extend({
-  parentModel: DS.belongsTo('model'),
-  name: DS.attr('string'),
+  parentModel:      DS.belongsTo('model'),
+  name:             DS.attr('string'),
   jsonPropertyName: DS.attr('string'),
-  type: DS.attr('string'),
-  relatedTo: DS.attr('string', { defaultValue: null }),
-  hasRelation: function() {
+  type:             DS.attr('string'),
+  relatedTo:        DS.attr('string', { defaultValue: null }),
+  hasRelation:      function () {
     var currentType = this.get('type');
     return (currentType === 'hasMany' || currentType === 'belongsTo');
   }.property('type')

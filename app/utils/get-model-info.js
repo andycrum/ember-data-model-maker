@@ -13,22 +13,22 @@ export default function getModelInfo(controller) {
 
   controller.set('modelObjects', []);
 
-  models.forEach(function(model, index) {
+  models.forEach(function (model, index) {
     fields[index] = [];
 
-    model.get('fields').then(function(currentFields) {
-      currentFields.forEach(function(field, i) {
+    model.get('fields').then(function (currentFields) {
+      currentFields.forEach(function (field, i) {
         var fieldName = field.get('name');
         var fieldType = field.get('type');
 
         fieldName = (fieldName === '')? '<field name>' : fieldName;
 
-        switch(adapter) {
+        switch (adapter) {
           case Constants.ADAPTER_ACTIVEMODEL:
-            if(fieldType === 'hasMany') {
+            if (fieldType === 'hasMany') {
               fieldName = Ember.Inflector.inflector.singularize(fieldName);
               fieldName = Ember.String.decamelize(fieldName) + '_ids';
-            } else if(fieldType === 'belongsTo') {
+            } else if (fieldType === 'belongsTo') {
               fieldName = Ember.String.decamelize(fieldName) + '_id';
             } else {
               fieldName = Ember.String.decamelize(fieldName);
@@ -46,7 +46,7 @@ export default function getModelInfo(controller) {
           relatedTo: field.get('relatedTo')
         };
 
-        if(i === currentFields.get('length') - 1) {
+        if (i === currentFields.get('length') - 1) {
           fieldObject.lastField = true;
         }
 
@@ -59,14 +59,14 @@ export default function getModelInfo(controller) {
         fields: fields[index]
       };
 
-      if(index === models.get('length') - 1) {
+      if (index === models.get('length') - 1) {
         modelObject.lastModel = true;
       }
 
       modelObjects = controller.get('modelObjects');
-      if(modelObjects.length) {
-        modelObjects.forEach(function(mo) {
-          if(mo.name !== modelObject.name) {
+      if (modelObjects.length) {
+        modelObjects.forEach(function (mo) {
+          if (mo.name !== modelObject.name) {
             newModelObjects.push(mo);
           }
         });
@@ -75,7 +75,7 @@ export default function getModelInfo(controller) {
       // Make a copy of the object and push to array (to fix references -- this is inside a loop)
       newModelObjects.push(JSON.parse(JSON.stringify(modelObject)));
 
-      if(newModelObjects.length) {
+      if (newModelObjects.length) {
         controller.set('modelObjects', newModelObjects);
         newModelObjects = [];
       }

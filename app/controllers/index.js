@@ -13,25 +13,25 @@ export default Ember.ArrayController.extend({
   isGlobalFormat: Ember.computed.equal('modelFormat', Constants.MODEL_FORMAT_GLOBAL),
 
   // Observers
-  modelObserver: function() {
+  modelObserver: function () {
     var modelObjects = this.get('modelObjects');
     this.set('jsonObjects', modelObjects);
   }.observes('modelObjects'),
 
-  changeObserver: function() {
-    Ember.run.once(this, function() {
-      getModelInfo(this);
-    });
+  changeObserver: function () {
+    this.trigger('updateFields');
   }.observes('adapter'),
 
   // Actions
   actions: {
+
     // Add a new model
-    newModel: function() {
+    newModel: function () {
       this.set('creatingNewModel', true);
     },
+
     // Add a new field
-    newField: function(model) {
+    newField: function (model) {
       var currentFields = model.get('fields'),
         _this = this;
 
@@ -44,13 +44,14 @@ export default Ember.ArrayController.extend({
         data.addObject(newField);
       });
     },
+
     // Remove a model
-    removeModel: function(model) {
+    removeModel: function (model) {
       var fields = model.get('fields'),
           _this = this;
 
       // iterate through fields and delete those records
-      fields.forEach(function(field) {
+      fields.forEach(function (field) {
         field.deleteRecord();
       });
 
@@ -58,9 +59,16 @@ export default Ember.ArrayController.extend({
 
       // trigger an update of the json,etc.
       // this does a mock ajax call or something, so it needs a timeout to work correctly
-      Ember.run.later(function() {
+      Ember.run.later(function () {
         getModelInfo(_this);
       }, 100);
+    },
+
+    // Triggered when fields/models are updated (to update json/model definitions)
+    updateFields: function () {
+      Ember.run.once(this, function () {
+        getModelInfo(this);
+      });
     }
   }
 });
