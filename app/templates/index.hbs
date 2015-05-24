@@ -97,7 +97,7 @@
          <ul>
            <li>"id": 1,</li>
            {{#each fields}}
-             <li>"{{this.name}}": {{placeholder-value this}}{{#unless lastField}},{{/unless}}</li>
+             <li>"{{jsonPropertyName}}": {{placeholder-value this}}{{#unless lastField}},{{/unless}}</li>
            {{/each}}
          </ul>
        }]{{#unless lastModel}},{{/unless}}

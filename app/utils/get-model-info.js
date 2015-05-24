@@ -39,7 +39,8 @@ export default function getModelInfo(controller) {
         }
 
         fieldObject = {
-          name: fieldName,
+          name: field.get('name'),
+          jsonPropertyName: fieldName,
           type: field.get('type'),
           relatedTo: field.get('relatedTo')
         };
