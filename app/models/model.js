@@ -1,15 +1,17 @@
 import DS from 'ember-data';
 
-var Model = DS.Model.extend({
-  name:   DS.attr('string'),
-  fields: DS.hasMany('field', {async: true})
+const { Model, attr, hasMany } = DS;
+
+var ModelModel = Model.extend({
+  name:   attr('string'),
+  fields: hasMany('field', {async: true})
 });
 
-Model.reopenClass({
+ModelModel.reopenClass({
   FIXTURES: [
     { id: 1, name: 'Post', fields: [1, 2, 3] },
     { id: 2, name: 'Author', fields: [4, 5, 6] }
   ]
 });
 
-export default Model;
+export default ModelModel;

@@ -1,0 +1,11 @@
+<span class="text-muted">// app/models/{{str-dasherize model.name}}.js</span><br>
+export default DS.Model.extend({<br>
+<ul>
+  {{#each model.fields as |field|}}
+    <li>
+      {{camelize-word field.name}}:
+      {{#if field.relatedTo}}DS.{{field.type}}('{{camelize-word field.relatedTo}}'){{else}}DS.attr('{{field.type}}'){{/if}}{{#unless field.lastField}},{{/unless}}
+    </li>
+  {{/each}}
+</ul>
+});

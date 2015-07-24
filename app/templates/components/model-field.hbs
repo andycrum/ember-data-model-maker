@@ -12,6 +12,6 @@
   </div>
 {{/if}}
 
-<div {{bind-attr class='field.hasRelation::col-sm-offset-4 :col-sm-1'}}>
+<div class=":col-sm-1 {{unless field.hasRelation 'col-sm-offset-4'}}">
   <button type='button' {{action 'removeField' field}} class='close'><span aria-hidden='true' class='text-danger'>&times;</span><span class='sr-only'>Delete</span></button>
 </div>

@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
   // populate modelObjects (for json) on view creation
-  willInsertElement: function() {
+  willInsertElement() {
     getModelInfo(this.get('controller'));
   }
 });

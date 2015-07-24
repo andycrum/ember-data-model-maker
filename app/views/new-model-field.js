@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
+const { TextField } = Ember;
+
 // Custom text field for 'new model' name
-export default Ember.TextField.extend({
-  didInsertElement: function() {
+export default TextField.extend({
+  didInsertElement() {
     this.$().focus();
   },
-  keyDown: function(event) {
+
+  keyDown(event) {
     // Enter/Return key -> save
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -19,11 +22,12 @@ export default Ember.TextField.extend({
       return false;
     }
   },
-  save: function() {
-    var controller = this.get('parentView').get('controller'),
-        store = controller.get('store');
 
-    var model = store.createRecord('model', {
+  save() {
+    let controller = this.get('parentView').get('controller');
+    let store = controller.get('store');
+
+    let model = store.createRecord('model', {
       name: Ember.String.classify(this.$().val())
     });
 

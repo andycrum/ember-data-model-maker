@@ -2,7 +2,9 @@ import Constants from 'ember-data-model-maker/utils/constants';
 import getModelInfo from 'ember-data-model-maker/utils/get-model-info';
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+const { ArrayController, computed, observer } = Ember;
+
+export default ArrayController.extend({
   adapter: Constants.ADAPTER_OPTIONS[0],
   adapterOptions: Constants.ADAPTER_OPTIONS,
   modelFormat: Constants.MODEL_FORMAT_OPTIONS[0],
@@ -10,28 +12,31 @@ export default Ember.ArrayController.extend({
   creatingNewModel: false,
   jsonObjects: [],
   modelObjects: [],
-  isGlobalFormat: Ember.computed.equal('modelFormat', Constants.MODEL_FORMAT_GLOBAL),
+  isGlobalFormat: computed.equal('modelFormat', Constants.MODEL_FORMAT_GLOBAL),
 
   // Observers
-  modelObserver: function () {
+  modelObserver: observer('modelObjects', function () {
     var modelObjects = this.get('modelObjects');
     this.set('jsonObjects', modelObjects);
-  }.observes('modelObjects'),
+  }),
 
-  changeObserver: function () {
+  changeObserver: observer('adapter', function () {
     this.send('updateFields');
-  }.observes('adapter'),
+  }),
 
   // Actions
   actions: {
 
     // Add a new model
-    newModel: function () {
-      this.set('creatingNewModel', true);
+    newModel(modelName) {
+      let model = this.store.createRecord('model', {
+        name: Ember.String.classify(modelName)
+      });
+      this.send('newField', model);
     },
 
     // Add a new field
-    newField: function (model) {
+    newField(model) {
       var currentFields = model.get('fields'),
         _this = this;
 
@@ -46,7 +51,7 @@ export default Ember.ArrayController.extend({
     },
 
     // Remove a model
-    removeModel: function (model) {
+    removeModel(model) {
       var fields = model.get('fields'),
           _this = this;
 
@@ -65,7 +70,7 @@ export default Ember.ArrayController.extend({
     },
 
     // Triggered when fields/models are updated (to update json/model definitions)
-    updateFields: function () {
+    updateFields() {
       Ember.run.once(this, function () {
         getModelInfo(this);
       });
