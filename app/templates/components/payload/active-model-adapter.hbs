@@ -1,0 +1,6 @@
+{{#each models as |model index|}}
+  "{{model.modelName}}": [{
+    {{#each model.attributes as |attr|}}
+    {{/each}}
+  }]
+{{/each}}
