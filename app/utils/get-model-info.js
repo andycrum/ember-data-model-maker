@@ -37,6 +37,9 @@ export default function getModelInfo(controller) {
           case Constants.ADAPTER_REST:
             fieldName = Ember.String.camelize(fieldName);
             break;
+          case Constants.ADAPTER_JSONAPI:
+            fieldName = Ember.String.dasherize(fieldName);
+            break;
         }
 
         fieldObject = {
