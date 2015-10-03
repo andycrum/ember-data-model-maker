@@ -1,18 +1,20 @@
 import Constants from 'ember-data-model-maker/utils/constants';
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, observer } = Ember;
+
+export default Component.extend({
   typeOptions: Constants.TYPE_OPTIONS,
   field: null,
-  changeObserver: function () {
+  changeObserver: observer('field.name', 'field.type', 'field.relatedTo', function () {
     this.sendAction('update');
-  }.observes('field.name', 'field.type', 'field.relatedTo'),
+  }),
 
   actions: {
-    removeField: function (field) {
-      var parentModel = field.get('parentModel'),
-          removedId = field.get('id'),
-          fields = parentModel.get('fields');
+    removeField(field) {
+      let parentModel = field.get('parentModel');
+      let removedId = field.get('id');
+      let fields = parentModel.get('fields');
 
       field.deleteRecord();
 

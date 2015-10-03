@@ -1,0 +1,8 @@
+"{{format-model-name object.name adapter}}": [{
+ <ul>
+   <li>"id": 1,</li>
+   {{#each object.fields as |field|}}
+     <li>"{{field.jsonPropertyName}}": {{placeholder-value field}}{{#unless field.lastField}},{{/unless}}</li>
+   {{/each}}
+ </ul>
+}]{{#unless object.lastModel}},{{/unless}}

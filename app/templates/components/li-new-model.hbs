@@ -1,0 +1,5 @@
+{{#if isCreating}}
+  <li>{{input value=modelName class="form-control" placeholder="New Model Name"}}</li>
+{{else}}
+  <li><button {{action "addModel"}} class="btn btn-lg btn-success" type="button">&plus; Add Model</button></li>
+{{/if}}

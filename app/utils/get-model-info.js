@@ -3,13 +3,13 @@ import Constants from 'ember-data-model-maker/utils/constants';
 
 // Converts models/fields to objects that can be represented as JSON
 export default function getModelInfo(controller) {
-  var models = controller.store.all('model'),
-      adapter = controller.get('adapter'),
-      fields = [],
-      fieldObject = {},
-      modelObject = {},
-      modelObjects = [],
-      newModelObjects = [];
+  var models = controller.store.all('model');
+  var adapter = controller.get('adapter');
+  var fields = [];
+  var fieldObject = {};
+  var modelObject = {};
+  var modelObjects = [];
+  var newModelObjects = [];
 
   controller.set('modelObjects', []);
 

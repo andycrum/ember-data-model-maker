@@ -2,7 +2,7 @@
   <div class="col-sm-6">
   <h2>Models</h2>
   <ul class="list-unstyled">
-    {{#each item in model}}
+    {{#each model as |item|}}
       <li class="model-list-item">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -10,7 +10,6 @@
               {{item.name}}
               <button type="button" {{action "removeModel" item}} class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Delete</span></button>
             </h3>
-
           </div>
 
           <div class="panel-body">
@@ -34,11 +33,7 @@
       </li>
     {{/each}}
 
-    {{#if creatingNewModel}}
-      <li>{{view "new-model-field" class="form-control" placeholder="New Model Name"}}</li>
-    {{else}}
-      <li><button {{action "newModel"}} class="btn btn-lg btn-success" type="button">&plus; Add Model</button></li>
-    {{/if}}
+    {{li-new-model save=(action 'newModel')}}
   </ul>
   </div>
 
@@ -55,26 +50,11 @@
   </form>
 
   <ul class="code-div well well-sm">
-    {{#if modelObjects}}
-      {{#each modelObjects as |model|}}
-        <li class="form-group">
-          {{#if isGlobalFormat}}
-            App.{{model.name}} = DS.Model.extend({<br>
-          {{else}}
-            <span class="text-muted">// app/models/{{str-dasherize model.name}}.js</span><br>
-            export default DS.Model.extend({<br>
-          {{/if}}
-          <ul>
-            {{#each model.fields as |field|}}
-              <li>
-                {{camelize-word field.name}}:
-                {{#if field.relatedTo}}DS.{{field.type}}('{{camelize-word field.relatedTo}}'){{else}}DS.attr('{{field.type}}'){{/if}}{{#unless field.lastField}},{{/unless}}
-              </li>
-            {{/each}}
-          </ul>
-        });</li>
-      {{/each}}
-    {{/if}}
+    {{#each modelObjects as |model|}}
+      <li class="form-group">
+        {{component (model-definition modelFormat) isGlobalFormat=isGlobalFormat model=model}}
+      </li>
+    {{/each}}
   </ul>
   <br>
 
@@ -93,14 +73,7 @@
     <ul class="code-div well well-sm form-group">
      {{#each jsonObjects as |object|}}
        <li>
-       "{{format-model-name object.name adapter}}": [{
-         <ul>
-           <li>"id": 1,</li>
-           {{#each object.fields as |field|}}
-             <li>"{{field.jsonPropertyName}}": {{placeholder-value field}}{{#unless field.lastField}},{{/unless}}</li>
-           {{/each}}
-         </ul>
-       }]{{#unless object.lastModel}},{{/unless}}
+         {{component 'json-payload' object=object}}
        </li>
      {{/each}}
     </ul>

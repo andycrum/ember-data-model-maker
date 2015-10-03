@@ -1,15 +1,19 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
-var Field = DS.Model.extend({
-  parentModel:      DS.belongsTo('model'),
-  name:             DS.attr('string'),
-  jsonPropertyName: DS.attr('string'),
-  type:             DS.attr('string'),
-  relatedTo:        DS.attr('string', { defaultValue: null }),
-  hasRelation:      function () {
+const { computed } = Ember;
+const { Model, belongsTo, attr } = DS;
+
+let Field = Model.extend({
+  parentModel:      belongsTo('model'),
+  name:             attr('string'),
+  jsonPropertyName: attr('string'),
+  type:             attr('string'),
+  relatedTo:        attr('string', { defaultValue: null }),
+  hasRelation:      computed('type', function () {
     var currentType = this.get('type');
     return (currentType === 'hasMany' || currentType === 'belongsTo');
-  }.property('type')
+  })
 });
 
 Field.reopenClass({
