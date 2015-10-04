@@ -3,7 +3,11 @@
 </div>
 
 <div class='col-sm-3'>
-  {{view "select" content=typeOptions value=field.type prompt='Attribute Type' class='form-control'}}
+  {{#x-select value=field.type class='form-control' prompt='Attribute Type'}}
+    {{#each typeOptions as |option|}}
+      {{#x-option value=option}}{{option}}{{/x-option}}
+    {{/each}}
+  {{/x-select}}
 </div>
 
 {{#if field.hasRelation}}

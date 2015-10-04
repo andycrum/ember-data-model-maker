@@ -44,7 +44,11 @@
     <div class="row form-group">
       <label for="format-select" class="col-sm-2 control-label">Format:</label>
       <div class="col-sm-9">
-        {{view "select" id="format-select" content=modelFormatOptions value=modelFormat class="form-control"}}
+        {{#x-select value=modelFormat id="format-select" class='form-control'}}
+          {{#each modelFormatOptions as |option|}}
+            {{#x-option value=option}}{{option}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
       </div>
     </div>
   </form>
@@ -64,7 +68,11 @@
     <div class="row form-group">
       <label for="adapter-select" class="col-sm-2 control-label">Adapter:</label>
       <div class="col-sm-9">
-        {{view "select" id="adapter-select" content=adapterOptions value=adapter class="form-control"}}
+        {{#x-select value=adapter id="adapter-select" class='form-control'}}
+          {{#each adapterOptions as |option|}}
+            {{#x-option value=option}}{{option}}{{/x-option}}
+          {{/each}}
+        {{/x-select}}
       </div>
     </div>
   </form>
