@@ -20,7 +20,12 @@ export default ArrayController.extend({
     this.set('jsonObjects', modelObjects);
   }),
 
+  isJSONAPI: computed('adapter', function() {
+    return this.get('adapter') === Constants.ADAPTER_JSONAPI;
+  }),
+
   changeObserver: observer('adapter', function () {
+    console.log("halp");
     this.send('updateFields');
   }),
 
