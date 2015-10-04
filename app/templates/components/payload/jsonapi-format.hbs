@@ -1,1 +1,44 @@
-{{yield}}
+{{#each model as |m|}}
+<ul>{
+  <li>"data": {
+    <ul>
+      <li>"type": "{{format-model-name m.name "DS.JSONAPIAdapter"}}",</li>
+      <li>"id": "1",</li>
+      <li>"attributes": {
+        <ul>
+          {{#each m.fields as |field|}}
+            {{#if (not (or (eq "hasMany" field.type) (eq "belongsTo" field.type)))}}
+            <li>"{{field.name}}": {{placeholder-value field}}{{#unless field.lastField}},{{/unless}}</li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      },
+      </li>
+      <li>"relationships": {
+        <ul>
+          {{#each m.fields as |field|}}
+            {{#if (or (eq "hasMany" field.type) (eq "belongsTo" field.type))}}
+              <li>"{{field.name}}": {
+                <ul>
+                  <li>"data": { "type": {{field.name}}, "id": &lt;{{field.name}} id&gt; }</li>
+                </ul>
+                }
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+        },
+      </li>
+      <li>"included": [{
+        <ul>
+          <li>&lt;sideloaded relationships&gt;</li>
+        </ul>
+        ]}
+      </li>
+    </ul>
+  }
+  </li>
+  }
+</ul>
+<br>
+{{/each}}

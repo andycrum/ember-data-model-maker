@@ -79,11 +79,15 @@
 
   {{#if jsonObjects}}
     <ul class="code-div well well-sm form-group">
-     {{#each jsonObjects as |object|}}
-       <li>
-         {{component 'json-payload' object=object}}
-       </li>
-     {{/each}}
+      {{#if isJSONAPI}}
+        {{payload/jsonapi-format model=jsonObjects}}
+      {{else}}
+        {{#each jsonObjects as |object|}}
+         <li>
+           {{component 'json-payload' object=object}}
+         </li>
+        {{/each}}
+      {{/if}}
     </ul>
   {{/if}}
   </div>

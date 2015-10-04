@@ -3,6 +3,11 @@ import Constants from 'ember-data-model-maker/utils/constants';
 
 // Pluralizes and formats model name depending on adapter
 export default Ember.Handlebars.makeBoundHelper(function (word, adapterName) {
+  if (adapterName === Constants.ADAPTER_JSONAPI) {
+    return Ember.String.pluralize(
+      Ember.String.decamelize(Ember.String.dasherize(word)));
+  }
+
   var pluralized = Ember.String.pluralize(word),
       modelName = Ember.String.camelize(pluralized);
 
