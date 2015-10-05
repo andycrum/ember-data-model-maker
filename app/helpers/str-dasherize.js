@@ -1,5 +1,5 @@
 import Ember from 'ember';
 
-export default Ember.Handlebars.makeBoundHelper(function(str) {
-  return Ember.String.dasherize(str);
+export default Ember.Helper.helper(function(params/*, hash*/) {
+  return Ember.String.dasherize(params[0]);
 });

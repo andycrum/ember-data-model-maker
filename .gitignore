@@ -16,5 +16,5 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
-edmm.sublime-project
-edmm.sublime-workspace
+*.sublime-project
+*.sublime-workspace

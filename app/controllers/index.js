@@ -2,9 +2,9 @@ import Constants from 'ember-data-model-maker/utils/constants';
 import getModelInfo from 'ember-data-model-maker/utils/get-model-info';
 import Ember from 'ember';
 
-const { ArrayController, computed, observer } = Ember;
+const { Controller, computed, observer } = Ember;
 
-export default ArrayController.extend({
+export default Controller.extend({
   adapter: Constants.ADAPTER_OPTIONS[0],
   adapterOptions: Constants.ADAPTER_OPTIONS,
   modelFormat: Constants.MODEL_FORMAT_OPTIONS[0],
@@ -25,7 +25,6 @@ export default ArrayController.extend({
   }),
 
   changeObserver: observer('adapter', function () {
-    console.log("halp");
     this.send('updateFields');
   }),
 
