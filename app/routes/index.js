@@ -4,8 +4,6 @@ const { Route } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.findAll('model').then(function() {
-      debugger;
-    });
+    return this.store.findAll('model');
   }
 });

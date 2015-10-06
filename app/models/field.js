@@ -11,7 +11,7 @@ export default Model.extend({
   type:             attr('string'),
   relatedTo:        attr('string', { defaultValue: null }),
   hasRelation:      computed('type', function () {
-    var currentType = this.get('type');
+    const currentType = this.get('type');
     return (currentType === 'hasMany' || currentType === 'belongsTo');
   })
 });;

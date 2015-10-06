@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-data-model-maker',
     environment: environment,
-    baseURL: '/ember-data-model-maker/',
+    baseURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
