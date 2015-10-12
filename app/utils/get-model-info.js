@@ -1,15 +1,17 @@
 import Ember from 'ember';
 import Constants from 'ember-data-model-maker/utils/constants';
 
+const { Inflector, String } = Ember;
+
 // Converts models/fields to objects that can be represented as JSON
 export default function getModelInfo(controller) {
-  var models = controller.store.all('model');
-  var adapter = controller.get('adapter');
-  var fields = [];
-  var fieldObject = {};
-  var modelObject = {};
-  var modelObjects = [];
-  var newModelObjects = [];
+  const models = controller.store.peekAll('domainModel');
+  const adapter = controller.get('adapter');
+  let fields = [];
+  let fieldObject = {};
+  let modelObject = {};
+  let modelObjects = [];
+  let newModelObjects = [];
 
   controller.set('modelObjects', []);
 
@@ -18,8 +20,8 @@ export default function getModelInfo(controller) {
 
     model.get('fields').then(function (currentFields) {
       currentFields.forEach(function (field, i) {
-        var fieldName = field.get('name');
-        var fieldType = field.get('type');
+        let fieldName   = field.get('name');
+        const fieldType = field.get('type');
 
         fieldName = (fieldName === '')? '<field name>' : fieldName;
 
@@ -42,11 +44,13 @@ export default function getModelInfo(controller) {
             break;
         }
 
+        const relatedTo = (fieldType === 'hasMany' || fieldType === 'belongsTo') ? field.get('relatedTo') : null;
+
         fieldObject = {
-          name: field.get('name'),
+          name:             field.get('name'),
           jsonPropertyName: fieldName,
-          type: field.get('type'),
-          relatedTo: field.get('relatedTo')
+          type:             fieldType,
+          relatedTo:        relatedTo
         };
 
         if (i === currentFields.get('length') - 1) {
@@ -58,7 +62,7 @@ export default function getModelInfo(controller) {
       });
 
       modelObject = {
-        name: model.get('name'),
+        name:   model.get('name'),
         fields: fields[index]
       };
 

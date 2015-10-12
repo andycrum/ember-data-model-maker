@@ -2,7 +2,9 @@ import Constants from 'ember-data-model-maker/utils/constants';
 import Ember from 'ember';
 
 // Placeholder values for example JSON representation
-export default Ember.Handlebars.makeBoundHelper(function (field, adapter) {
+export default Ember.Helper.helper(function (params/*, hash*/) {
+  const field = params[0];
+  const adapter = params[1];
   if (!field.type) {
     return;
   }

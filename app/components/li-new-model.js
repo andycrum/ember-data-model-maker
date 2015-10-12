@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   actions: {
     addModel() {
       this.set('isCreating', true);
-      Ember.run.next(this, function() {
+      Ember.run.next(this, () => {
         this.$('.form-control').focus();
       });
     }

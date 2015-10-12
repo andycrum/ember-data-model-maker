@@ -2,9 +2,9 @@ import Constants from 'ember-data-model-maker/utils/constants';
 import getModelInfo from 'ember-data-model-maker/utils/get-model-info';
 import Ember from 'ember';
 
-const { ArrayController, computed, observer } = Ember;
+const { Controller, computed, observer } = Ember;
 
-export default ArrayController.extend({
+export default Controller.extend({
   adapter: Constants.ADAPTER_OPTIONS[0],
   adapterOptions: Constants.ADAPTER_OPTIONS,
   modelFormat: Constants.MODEL_FORMAT_OPTIONS[0],
@@ -16,7 +16,7 @@ export default ArrayController.extend({
 
   // Observers
   modelObserver: observer('modelObjects', function () {
-    var modelObjects = this.get('modelObjects');
+    const modelObjects = this.get('modelObjects');
     this.set('jsonObjects', modelObjects);
   }),
 
@@ -25,7 +25,6 @@ export default ArrayController.extend({
   }),
 
   changeObserver: observer('adapter', function () {
-    console.log("halp");
     this.send('updateFields');
   }),
 
@@ -34,7 +33,7 @@ export default ArrayController.extend({
 
     // Add a new model
     newModel(modelName) {
-      let model = this.store.createRecord('model', {
+      let model = this.store.createRecord('domain-model', {
         name: Ember.String.classify(modelName)
       });
       this.send('newField', model);
@@ -42,13 +41,13 @@ export default ArrayController.extend({
 
     // Add a new field
     newField(model) {
-      var currentFields = model.get('fields'),
-        _this = this;
+      const currentFields = model.get('fields');
 
-      currentFields.then(function (data) {
-        var newField = _this.store.createRecord('field', {
+      currentFields.then((data) => {
+        const newField = this.store.createRecord('field', {
           name: '',
-          parentModel: model
+          parentModel: model,
+          type: 'string'
         });
 
         data.addObject(newField);
@@ -57,26 +56,25 @@ export default ArrayController.extend({
 
     // Remove a model
     removeModel(model) {
-      var fields = model.get('fields'),
-          _this = this;
+      const fields = model.get('fields');
 
       // iterate through fields and delete those records
-      fields.forEach(function (field) {
-        field.deleteRecord();
+      fields.forEach((field) => {
+        field.destroyRecord();
       });
 
-      model.deleteRecord();
+      model.destroyRecord();
 
       // trigger an update of the json,etc.
       // this does a mock ajax call or something, so it needs a timeout to work correctly
-      Ember.run.later(function () {
-        getModelInfo(_this);
+      Ember.run.later(() => {
+        getModelInfo(this);
       }, 100);
     },
 
     // Triggered when fields/models are updated (to update json/model definitions)
     updateFields() {
-      Ember.run.once(this, function () {
+      Ember.run.once(this, () => {
         getModelInfo(this);
       });
     }

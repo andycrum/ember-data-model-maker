@@ -4,6 +4,6 @@ const { Route } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.find('model');
+    return this.store.findAll('domainModel');
   }
 });

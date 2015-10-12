@@ -12,11 +12,11 @@ export default Component.extend({
 
   actions: {
     removeField(field) {
-      let parentModel = field.get('parentModel');
-      let removedId = field.get('id');
-      let fields = parentModel.get('fields');
+      const parentModel = field.get('parentModel');
+      const removedId   = field.get('id');
+      const fields      = parentModel.get('fields');
 
-      field.deleteRecord();
+      field.destroyRecord();
 
       // have to iterate through the fields to delete the correct field from the hasMany relationship
       fields.forEach(function (field) {
