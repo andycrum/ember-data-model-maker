@@ -20,7 +20,7 @@
             {{#if (or (eq "hasMany" field.type) (eq "belongsTo" field.type))}}
               <li>"{{field.name}}": {
                 <ul>
-                  <li>"data": { "type": {{field.name}}, "id": &lt;{{field.name}} id&gt; }</li>
+                  <li>"data": { "type": "{{field.name}}", "id": &lt;{{field.name}} id&gt; }</li>
                 </ul>
                 }
               </li>
