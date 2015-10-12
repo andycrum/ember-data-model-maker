@@ -1,6 +1,10 @@
 <div class="app-wrap row">
   <div class="col-sm-6">
   <h2>Models</h2>
+  {{#unless model}}
+    <p>No models yet. Add one!</p>
+  {{/unless}}
+
   <ul class="list-unstyled">
     {{#each model as |item|}}
       <li class="model-list-item">

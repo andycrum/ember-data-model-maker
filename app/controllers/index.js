@@ -33,9 +33,10 @@ export default Controller.extend({
 
     // Add a new model
     newModel(modelName) {
-      let model = this.store.createRecord('domain-model', {
+      const model = this.store.createRecord('domain-model', {
         name: Ember.String.classify(modelName)
       });
+
       this.send('newField', model);
     },
 
@@ -60,7 +61,9 @@ export default Controller.extend({
 
       // iterate through fields and delete those records
       fields.forEach((field) => {
-        field.destroyRecord();
+        if (field) {
+          field.destroyRecord();
+        }
       });
 
       model.destroyRecord();
