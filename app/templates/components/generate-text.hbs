@@ -1,0 +1,4 @@
+ember generate model {{str-dasherize model.name}}
+{{#each model.fields as |field|}}
+ {{field.name}}{{#if field.type}}:{{str-dasherize field.type}}{{/if}}{{#if field.relatedTo}}:{{field.relatedTo}}{{/if}}
+{{/each}}

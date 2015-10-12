@@ -9,7 +9,7 @@ var constants = {
   PLACEHOLDER_STRING: 'foo',
   PLACEHOLDER_NUMBER: 123,
   PLACEHOLDER_BOOLEAN: true,
-  PLACEHOLDER_DATE: new Date()
+  PLACEHOLDER_DATE: `"${new Date().toJSON()}"`,
 };
 
 constants.ADAPTER_OPTIONS = [constants.ADAPTER_JSONAPI, constants.ADAPTER_REST, constants.ADAPTER_ACTIVEMODEL];
