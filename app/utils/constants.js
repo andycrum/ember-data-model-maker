@@ -12,7 +12,7 @@ var constants = {
   PLACEHOLDER_DATE: new Date()
 };
 
-constants.ADAPTER_OPTIONS = [constants.ADAPTER_REST, constants.ADAPTER_ACTIVEMODEL, constants.ADAPTER_JSONAPI];
+constants.ADAPTER_OPTIONS = [constants.ADAPTER_JSONAPI, constants.ADAPTER_REST, constants.ADAPTER_ACTIVEMODEL];
 constants.MODEL_FORMAT_OPTIONS = [constants.MODEL_FORMAT_ES6, constants.MODEL_FORMAT_GLOBAL];
 
 export default constants;

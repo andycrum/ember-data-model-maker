@@ -5,7 +5,7 @@ const { computed } = Ember;
 const { Model, belongsTo, attr } = DS;
 
 export default Model.extend({
-  parentModel:      belongsTo('model'),
+  parentModel:      belongsTo('domainModel'),
   name:             attr('string'),
   jsonPropertyName: attr('string'),
   type:             attr('string'),

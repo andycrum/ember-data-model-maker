@@ -1,7 +1,12 @@
 export default function() {
-  this.get('/models');
+  this.urlPrefix = '/';
 
-  this.get('/fields');
+  this.get('/domainModels', 'domain-models');
+  this.get('/fields', 'fields');
+  this.get('/fields/:id', function(db, request) {
+    return {
+      field: db.fields.find(request.params.id)
+    };
+  });
 
-  this.get('/fields/:id');
 }
